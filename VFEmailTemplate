@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject="Opportunities to verify" recipientType="Contact" relatedToType="Account">
+
+    <messaging:htmlEmailBody >    
+    
+        Good Morning!  Here are the opporunities that needs verification. <br/><br/>
+        
+        <c:OpportunitiesToVerify accountIdValue="{!relatedTo.Id}" />
+         
+        ref: {!relatedTo.id}    
+    </messaging:htmlEmailBody>
+    
+</messaging:emailTemplate>
