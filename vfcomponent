@@ -1,0 +1,26 @@
+<apex:component access="global" controller="OppsWithMatches">
+
+    <apex:attribute name="accountIdValue" type="String" description="This is the Id of the account" assignTo="{!accountId}" access="global" />
+     
+    <table class="table">
+        <thead>    
+            <tr>
+                <th>Opportunity Name</th> 
+                <th>Opportunity Description</th>
+                <th>Opportunity Amount</th>
+            </tr>
+        </thead>        
+        <tbody>
+        <apex:repeat value="{!Opps}" var="pos">
+            <!--<apex:repeat value="{!pos.Matches__r}" var="match">
+                <tr>
+                    <td>{!pos.Name}</td>
+                        <td>{!match.Name}</td>
+                        <td>{!match.Email__c}</td>                                               
+                </tr>
+            </apex:repeat>  -->          
+        </apex:repeat>
+        </tbody>   
+    </table>
+
+</apex:component>
