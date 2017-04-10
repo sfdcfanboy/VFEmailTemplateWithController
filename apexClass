@@ -1,0 +1,41 @@
+global with sharing class OppsWithMatches{
+    
+    global List<Opportunity> Opps{get;set;}
+    global String accountId{get;set;}
+    global account account{
+        get {
+          Account = [Select Id, name from Account where id =: accountId];
+          return account; }
+       set;
+    }
+    
+    global  OppsWithMatches(){
+    }
+    
+    global List<Opportunity> Opps{
+        get{        
+            posToDisplay = new List<Opportunity>();
+            List<Opportunity> oppList = [SELECT Id,Name,Description,Amount,(SELECT Id,Name,Email__c FROM Matches__r) FROM Opporunity WHERE AccountId=:accountId];
+            for(Opportunity p:oppList){
+                Boolean display = false;
+                for(Match__c m:p.matches__r){
+                    if(m.status__c == 'Confirmed'){
+                        display = true;
+                    }
+                }
+                if(display==true){
+                    posToDisplay.add(p);
+                }
+            }
+            return posToDisplay;
+        }
+        set;
+    }
+    
+    
+    global String NewLine {
+        get { return '\r\n'; }
+        set;
+    }
+    
+}
